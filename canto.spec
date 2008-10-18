@@ -1,15 +1,18 @@
 Summary:	Canto is an Atom/RSS feed reader for the console
 Summary(hu.UTF-8):	Canto egy Atom/RSS hírolvasó konzolra
 Name:		canto
-Version:	0.4.7
-Release:	0.1
+Version:	0.5.3
+Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://codezen.org/static/%{name}-%{version}.tar.gz
-# Source0-md5:	86b879baf73b1e041d4a73a64116a2e7
+# Source0-md5:	75dff6e151a08221ca0f8a3f8bdb3792
 URL:		http://www.codezen.org/canto
 BuildRequires:	ncurses-devel
 BuildRequires:	python-devel >= 2.4.0
+BuildRequires:	rpmbuild(macros) >= 1.219
+Requires:	python-chardet
+Requires:	python-feedparser
 Obsoletes:	nrss
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,13 +35,24 @@ bővíthető a Python programozási nyelv segítségével.
 %setup -q
 
 %build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-./setup.py install --prefix=%{_prefix} --root=$RPM_BUILD_ROOT
+
+%{__python} setup.py install \
+	--prefix=%{_prefix} \
+	--root=$RPM_BUILD_ROOT
+
+# Hack to set correctly VERSION_TUPLE
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/canto/*.py{c,o}
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}/canto
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/canto
+
+%py_postclean
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
@@ -47,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}-fetch
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}-fetch.1*
+%{py_sitedir}/Canto-*.egg-info
 %dir %{py_sitedir}/canto
-%dir %{py_sitedir}/canto_fetch
-%{py_sitedir}/canto/*
-%{py_sitedir}/canto_fetch/*
+%attr(755,root,root) %{py_sitedir}/canto/widecurse.so
+%{py_sitedir}/canto/*.py[co]
