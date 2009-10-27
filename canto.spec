@@ -1,12 +1,12 @@
 Summary:	Canto is an Atom/RSS feed reader for the console
 Summary(hu.UTF-8):	Canto egy Atom/RSS hírolvasó konzolra
 Name:		canto
-Version:	0.6.7
+Version:	0.7.4
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://codezen.org/static/%{name}-%{version}.tar.gz
-# Source0-md5:	fc8e6d9c788270363814534baa193e55
+# Source0-md5:	dc011bdc1047585d4ebb97243ba3e631
 URL:		http://www.codezen.org/canto
 BuildRequires:	ncurses-devel
 BuildRequires:	python-devel >= 2.4.0
@@ -25,11 +25,11 @@ unreadable white text. An interface with almost infinite customization
 and extensibility using the excellent Python programming language.
 
 %description -l hu.UTF-8
-Canto egy Atom/RSS olvasó konzolra, azaz gyors, tömör és színes.
-Egy nagyon egyszerű felüleletet biztosít. Nincsenek menük,
-nincsenek sűrű képernyőrészek olvashatatlan fehér szöveggel.
-Egy interfész, amely majdnem a végtelenségig beállítható és
-bővíthető a Python programozási nyelv segítségével.
+Canto egy Atom/RSS olvasó konzolra, azaz gyors, tömör és színes. Egy
+nagyon egyszerű felüleletet biztosít. Nincsenek menük, nincsenek sűrű
+képernyőrészek olvashatatlan fehér szöveggel. Egy interfész, amely
+majdnem a végtelenségig beállítható és bővíthető a Python programozási
+nyelv segítségével.
 
 %prep
 %setup -q
@@ -56,12 +56,14 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/canto/*.py{c,o}
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog INSTALL README
+%doc ChangeLog INSTALL README doc/*
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/%{name}-fetch
+%attr(755,root,root) %{_bindir}/%{name}-inspect
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}-fetch.1*
 %{py_sitedir}/Canto-*.egg-info
 %dir %{py_sitedir}/canto
+%{py_sitedir}/canto/cfg
 %attr(755,root,root) %{py_sitedir}/canto/widecurse.so
 %{py_sitedir}/canto/*.py[co]
