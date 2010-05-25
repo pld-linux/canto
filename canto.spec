@@ -1,15 +1,16 @@
 Summary:	Canto is an Atom/RSS feed reader for the console
 Summary(hu.UTF-8):	Canto egy Atom/RSS hírolvasó konzolra
 Name:		canto
-Version:	0.7.4
+Version:	0.7.9
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://codezen.org/static/%{name}-%{version}.tar.gz
-# Source0-md5:	dc011bdc1047585d4ebb97243ba3e631
+# Source0-md5:	3a90fd0e70d6e0b6c0212fd45f0791e5
 URL:		http://www.codezen.org/canto
 BuildRequires:	ncurses-devel
 BuildRequires:	python-devel >= 2.4.0
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 Requires:	python-chardet
 Requires:	python-feedparser
