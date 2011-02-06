@@ -53,7 +53,7 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/canto/*.py{c,o}
 %py_postclean
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
