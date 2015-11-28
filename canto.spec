@@ -36,12 +36,12 @@ nyelv segítségével.
 %setup -q
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__python} setup.py install \
+%py_install \
 	--prefix=%{_prefix} \
 	--root=$RPM_BUILD_ROOT
 
