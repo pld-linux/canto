@@ -11,7 +11,7 @@ URL:		http://www.codezen.org/canto
 BuildRequires:	ncurses-devel
 BuildRequires:	python-devel >= 2.4.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 Requires:	python-chardet
 Requires:	python-feedparser
 Obsoletes:	nrss
